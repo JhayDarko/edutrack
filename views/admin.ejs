@@ -1,40 +1,73 @@
-<% title='Panel Admin' %>
-<h2>Gestión de Usuarios</h2>
-<table class="table">
-  <thead>
-    <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th></tr>
+<% title = 'Panel Admin' %>
+
+<h2 class="mb-4 text-primary fw-bold"><i class="fa-solid fa-user-shield me-2"></i>Gestión de Usuarios</h2>
+
+<table class="table table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th class="text-center">Acciones</th>
+    </tr>
   </thead>
   <tbody>
-    <% usuarios.forEach(u=>{ %>
+    <% usuarios.forEach(u => { %>
       <tr>
         <td><%= u.id %></td>
         <td><%= u.nombre %></td>
         <td><%= u.email %></td>
-        <td><%= u.role %></td>
-        <td>
-          <button class="btn btn-sm btn-warning"><i class="fa-solid fa-edit"></i></button>
-          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <td><span class="badge bg-secondary text-uppercase"><%= u.role %></span></td>
+        <td class="text-center">
+          <a href="/usuarios/editar/<%= u.id %>" class="btn btn-sm btn-warning me-1" aria-label="Editar usuario <%= u.nombre %>" title="Editar">
+            <i class="fa-solid fa-edit"></i>
+          </a>
+          <form action="/usuarios/eliminar/<%= u.id %>" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar usuario <%= u.nombre %>? Esta acción no se puede revertir.')">
+            <button type="submit" class="btn btn-sm btn-danger" aria-label="Eliminar usuario <%= u.nombre %>" title="Eliminar">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
         </td>
       </tr>
     <% }) %>
   </tbody>
 </table>
 
-<h2 class="mt-5">Gestión de Cursos</h2>
-<a class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
-<table class="table">
-  <thead><tr><th>ID</th><th>Título</th><th>Profesor</th><th>Acciones</th></tr></thead>
+<h2 class="mt-5 mb-4 text-primary fw-bold"><i class="fa-solid fa-layer-group me-2"></i>Gestión de Cursos</h2>
+
+<div class="mb-3 text-end">
+  <a href="/cursos/nuevo" class="btn btn-success btn-lg fw-semibold shadow-sm">
+    <i class="fa-solid fa-plus me-2"></i> Nuevo Curso
+  </a>
+</div>
+
+<table class="table table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Profesor</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+  </thead>
   <tbody>
-    <% cursos.forEach(c=>{ 
-         const prof = usuarios.find(u=>u.id===c.profesorId);
+    <% cursos.forEach(c => {
+         const prof = usuarios.find(u => u.id === c.profesorId);
     %>
       <tr>
         <td><%= c.id %></td>
         <td><%= c.titulo %></td>
         <td><%= prof?.nombre || '—' %></td>
-        <td>
-          <button class="btn btn-sm btn-warning"><i class="fa-solid fa-edit"></i></button>
-          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <td class="text-center">
+          <a href="/cursos/editar/<%= c.id %>" class="btn btn-sm btn-warning me-1" aria-label="Editar curso <%= c.titulo %>" title="Editar">
+            <i class="fa-solid fa-edit"></i>
+          </a>
+          <form action="/cursos/eliminar/<%= c.id %>" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar curso <%= c.titulo %>? Esta acción no se puede revertir.')">
+            <button type="submit" class="btn btn-sm btn-danger" aria-label="Eliminar curso <%= c.titulo %>" title="Eliminar">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
         </td>
       </tr>
     <% }) %>

@@ -1,58 +1,211 @@
 <% title = 'Estadísticas por Período' %>
 
-<h2 class="mb-4 text-center">Estadísticas por Período</h2>
-<div class="row justify-content-center">
-  <div class="col-md-8">
-    <canvas id="radarStats"></canvas>
+<h2 class="mb-4 text-center text-primary fw-semibold">Estadísticas por Período</h2>
+
+<div class="container mb-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Gráfico Radar -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-4">
+        <h5 class="text-center text-primary fw-bold mb-3">Comparativa por Área</h5>
+        <canvas id="radarStats" aria-label="Gráfico de radar de estadísticas por área" role="img"></canvas>
+      </div>
+    </div>
+
+    <!-- Gráfico Línea - Progresión de Promedios -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-4">
+        <h5 class="text-center text-success fw-bold mb-3">Progresión de Promedios</h5>
+        <canvas id="lineStats" aria-label="Gráfico de línea de promedios por período" role="img"></canvas>
+      </div>
+    </div>
+
+    <!-- Gráfico Barras Promedio -->
+    <div class="col-md-8">
+      <div class="card shadow-sm p-4">
+        <h5 class="text-center text-warning fw-bold mb-3">Promedio General por Período</h5>
+        <canvas id="barStats" aria-label="Gráfico de barras de promedios por período" role="img"></canvas>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Recibimos objeto { periods: [...], data: { period: [{area,score},...] } }
   const stats = <%- JSON.stringify(stats) %>;
   const periods = stats.periods;
-  // Asumimos que el array de áreas es el mismo en cada período
   const labels = stats.data[periods[0]].map(item => item.area);
 
-  // Construimos un dataset por período
-  const datasets = periods.map((period, idx) => {
+  const colorForIndex = idx => {
+    const r = Math.min(255, 50 + idx * 50);
+    const g = Math.min(255, 123 + idx * 30);
+    const b = Math.max(0, 200 - idx * 40);
+    return { r, g, b };
+  };
+
+  // Radar Chart
+  const radarDatasets = periods.map((period, idx) => {
+    const { r, g, b } = colorForIndex(idx);
     return {
       label: period,
       data: stats.data[period].map(item => item.score),
-      fill: true,
-      tension: 0.1,
-      // Opciones de color semitransparente
-      backgroundColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 0.2)`,
-      borderColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 1)`,
-      pointBackgroundColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 1)`
+      backgroundColor: `rgba(${r}, ${g}, ${b}, 0.2)`,
+      borderColor: `rgba(${r}, ${g}, ${b}, 1)`,
+      pointBackgroundColor: `rgba(${r}, ${g}, ${b}, 1)`,
+      borderWidth: 2
     };
   });
 
-  new Chart(
-    document.getElementById('radarStats').getContext('2d'),
-    {
-      type: 'radar',
-      data: { labels, datasets },
-      options: {
-        responsive: true,
-        scales: {
-          r: {
-            beginAtZero: true,
-            suggestedMin: 0,
-            suggestedMax: 100,
-            ticks: { stepSize: 20 }
-          }
-        },
-        plugins: {
-          legend: { position: 'top' },
-          title: {
-            display: true,
-            text: 'Comparativa de Rendimiento por Período'
-          }
+  new Chart(document.getElementById('radarStats'), {
+    type: 'radar',
+    data: { labels, datasets: radarDatasets },
+    options: {
+      responsive: true,
+      aspectRatio: 1,
+      scales: {
+        r: {
+          beginAtZero: true,
+          suggestedMax: 100,
+          ticks: { stepSize: 20, color: '#666' },
+          grid: { color: '#ddd' },
+          angleLines: { color: '#ccc' },
+          pointLabels: { font: { size: 14, weight: 'bold' }, color: '#444' }
+        }
+      },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 14 } } },
+        title: {
+          display: true,
+          text: 'Rendimiento por Área',
+          font: { size: 18, weight: '600' },
+          color: '#222'
         }
       }
     }
+  });
+
+  // Promedios
+  const promediosNumeros = periods.map(period =>
+    parseFloat(
+      stats.data[period].reduce((sum, item) => sum + item.score, 0) / stats.data[period].length
+    ).toFixed(2)
   );
+
+  // Agregar tendencia con flechas
+  const promedioLabels = periods.map((period, i) => {
+    if (i === 0) return period;
+    const prev = promediosNumeros[i - 1];
+    const curr = promediosNumeros[i];
+    if (curr > prev) return period + ' ↑';
+    if (curr < prev) return period + ' ↓';
+    return period + ' →';
+  });
+
+  // Línea
+  const { r, g, b } = colorForIndex(0);
+  new Chart(document.getElementById('lineStats'), {
+    type: 'line',
+    data: {
+      labels: promedioLabels,
+      datasets: [{
+        label: 'Promedio',
+        data: promediosNumeros,
+        fill: false,
+        tension: 0.3,
+        borderColor: `rgba(${r}, ${g}, ${b}, 1)`,
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.4)`,
+        pointBackgroundColor: `rgba(${r}, ${g}, ${b}, 1)`,
+        pointRadius: 5,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      aspectRatio: 1,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { stepSize: 20, color: '#555' },
+          grid: { color: '#eee' }
+        },
+        x: {
+          ticks: { color: '#555' },
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Progresión de Promedio General',
+          font: { size: 18, weight: '600' }
+        }
+      }
+    }
+  });
+
+  // Barras
+  const barColors = periods.map((_, idx) => {
+    const { r, g, b } = colorForIndex(idx);
+    return `rgba(${r}, ${g}, ${b}, 0.7)`;
+  });
+
+  new Chart(document.getElementById('barStats'), {
+    type: 'bar',
+    data: {
+      labels: promedioLabels,
+      datasets: [{
+        label: 'Promedio',
+        data: promediosNumeros,
+        backgroundColor: barColors,
+        borderColor: barColors.map(c => c.replace('0.7', '1')),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      aspectRatio: 1,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { stepSize: 20, color: '#555' },
+          grid: { color: '#ddd' }
+        },
+        x: {
+          ticks: { color: '#555' }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Promedio General por Período',
+          font: { size: 18, weight: '600' }
+        }
+      }
+    }
+  });
 });
 </script>
+
+<style>
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 400px;
+  }
+
+  .card {
+    border-radius: 1rem;
+    background-color: #fff;
+    border: none;
+  }
+
+  .card h5 {
+    user-select: none;
+  }
+</style>

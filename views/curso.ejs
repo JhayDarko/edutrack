@@ -1,7 +1,21 @@
-<% title=curso.titulo %>
-<h2><%= curso.titulo %></h2>
-<p><%= curso.descripcion %></p>
-<div class="ratio ratio-16x9 mb-4">
-  <iframe src="https://www.youtube.com/embed/5KAcJC3ddP0" allowfullscreen></iframe>
+<% title = curso.titulo %>
+
+<h2 class="mb-3 text-primary fw-bold">
+  <i class="fa-solid fa-book-open me-2"></i><%= curso.titulo %>
+</h2>
+
+<p class="lead text-secondary mb-4"><%= curso.descripcion %></p>
+
+<div class="ratio ratio-16x9 mb-4 shadow-sm rounded">
+  <iframe 
+    src="https://www.youtube.com/embed/5KAcJC3ddP0" 
+    title="Video del curso <%= curso.titulo %>" 
+    allowfullscreen 
+    loading="lazy"
+    style="border-radius: 0.5rem;">
+  </iframe>
 </div>
-<button class="btn btn-success"><i class="fa-solid fa-check"></i> Marcar Completado</button>
+
+<button class="btn btn-success btn-lg fw-semibold">
+  <i class="fa-solid fa-check me-2"></i>Marcar Completado
+</button>

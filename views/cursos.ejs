@@ -1,14 +1,32 @@
-<% title='Gestionar Cursos' %>
-<h2>Gestionar Cursos</h2>
-<a class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
+<% title = 'Gestionar Cursos' %>
+
+<h2 class="mb-4 text-primary fw-bold d-flex align-items-center">
+  <i class="fa-solid fa-layer-group me-2 fs-3"></i> Gestionar Cursos
+</h2>
+
+<div class="mb-4 text-end">
+  <a href="/cursos/nuevo" class="btn btn-success btn-lg fw-semibold shadow-sm">
+    <i class="fa-solid fa-plus me-2"></i> Nuevo Curso
+  </a>
+</div>
+
 <div class="row g-4">
-  <% cursos.forEach(c=>{ %>
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h5><%= c.titulo %></h5>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-sm btn-warning me-2"><i class="fa-solid fa-edit"></i></button>
-          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+  <% cursos.forEach(c => { %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm p-3 h-100 d-flex flex-column justify-content-between">
+        <h5 class="mb-3 text-truncate" title="<%= c.titulo %>">
+          <i class="fa-solid fa-book me-2 text-secondary"></i>
+          <span><%= c.titulo %></span>
+        </h5>
+        <div class="d-flex justify-content-end gap-2">
+          <a href="/cursos/editar/<%= c.id %>" class="btn btn-sm btn-warning" aria-label="Editar curso <%= c.titulo %>" title="Editar <%= c.titulo %>">
+            <i class="fa-solid fa-edit"></i>
+          </a>
+          <form action="/cursos/eliminar/<%= c.id %>" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que deseas eliminar el curso <%= c.titulo %>?');">
+            <button type="submit" class="btn btn-sm btn-danger" aria-label="Eliminar curso <%= c.titulo %>" title="Eliminar <%= c.titulo %>">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>

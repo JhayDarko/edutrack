@@ -69,11 +69,11 @@
         "2025‑Q3": [
             {
                 "area": "Álgebra",
-                "score": 90
+                "score": 60
             },
             {
                 "area": "Física",
-                "score": 85
+                "score": 75
             },
             {
                 "area": "Cálculo",
@@ -85,7 +85,7 @@
             },
             {
                 "area": "Geometría",
-                "score": 80
+                "score": 60
             },
             {
                 "area": "Estadística",

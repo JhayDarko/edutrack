@@ -1,10 +1,26 @@
 <% title='Historial Tests' %>
-<h2>Historial de Tests</h2>
-<table class="table">
-  <thead><tr><th>Test</th><th>Fecha</th><th>Nota</th></tr></thead>
-  <tbody>
-    <% history.forEach(h=>{ %>
-      <tr><td><%= h.test %></td><td><%= h.fecha %></td><td><%= h.nota %></td></tr>
-    <% }) %>
-  </tbody>
-</table>
+
+<h2 class="mb-4 text-info fw-semibold">
+  <i class="fa-solid fa-clock-rotate-left me-2"></i>Historial de Tests
+</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Test</th>
+        <th scope="col">Fecha</th>
+        <th scope="col" class="text-center">Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% history.forEach(h => { %>
+        <tr>
+          <td><%= h.test %></td>
+          <td><%= new Date(h.fecha).toLocaleDateString() %></td>
+          <td class="text-center fw-bold"><%= h.nota %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

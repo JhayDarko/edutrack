@@ -54,5 +54,33 @@
     "descripcion": "Conceptos avanzados de programación.",
     "progreso": 85,
     "profesorId": 2
+  },
+  {
+    "id": 9,
+    "titulo": "Algoritmos y Estructuras de Datos",
+    "descripcion": "Fundamentos de algoritmos.",
+    "progreso": 0,
+    "profesorId": 2
+  },
+  {
+    "id": 10,
+    "titulo": "Bases de Datos",
+    "descripcion": "Introducción a bases de datos.",
+    "progreso": 0,
+    "profesorId": 2
+  },
+  {
+    "id": 11,
+    "titulo": "Redes de Computadoras",
+    "descripcion": "Fundamentos de redes.",
+    "progreso": 0,
+    "profesorId": 2
+  },
+  {
+    "id": 12,
+    "titulo": "Sistemas Operativos",
+    "descripcion": "Introducción a sistemas operativos.",
+    "progreso": 0,
+    "profesorId": 2
   }
 ]

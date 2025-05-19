@@ -1,46 +1,52 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-graduation-cap"></i>
-      <%= appName %>
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-graduation-cap"></i> <%= appName %>
     </a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav ms-auto">
-        <% if(user.role==='administrador' ){ %>
+
+        <% if(user.role === 'administrador') { %>
           <li class="nav-item">
             <a class="nav-link" href="/admin?userId=<%= user.id %>">Admin</a>
           </li>
-          <% } %>
-            <% if(user.role==='profesor' ||user.role==='administrador' ){ %>
-              <li class="nav-item">
-                <a class="nav-link" href="/profesores?userId=<%= user.id %>">Mis Cursos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/cursos?userId=<%= user.id %>">Gestionar Cursos</a>
-              </li>
-              <% } %>
-                <% if(user.role==='estudiante' ){ %>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/dashboard?userId=<%= user.id %>">Dashboard</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/recommend?userId=<%= user.id %>">Recomendados</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/history?userId=<%= user.id %>">Historial</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/stats?userId=<%= user.id %>">Stats</a>
-                  </li>
-                  <% } %>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/perfil?userId=<%= user.id %>">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/login">Salir</a>
-                    </li>
+        <% } %>
+
+        <% if(user.role === 'profesor' || user.role === 'administrador') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/profesores?userId=<%= user.id %>">Mis Cursos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cursos?userId=<%= user.id %>">Gestionar Cursos</a>
+          </li>
+        <% } %>
+
+        <% if(user.role === 'estudiante') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard?userId=<%= user.id %>">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/recommend?userId=<%= user.id %>">Recomendados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/history?userId=<%= user.id %>">Historial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/stats?userId=<%= user.id %>">Stats</a>
+          </li>
+        <% } %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil?userId=<%= user.id %>">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Salir</a>
+        </li>
+
       </ul>
     </div>
   </div>

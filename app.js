@@ -7,7 +7,6 @@ const { port } = require('./config/config');
 const dataService = require('./services/dataService');
 
 const app = express();
-
 // Config EJS + layouts
 app.locals.appName = 'EduTrack';
 app.set('view engine', 'ejs');

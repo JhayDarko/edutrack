@@ -1,30 +1,151 @@
-<% title = 'Login' %>
+<style>
+  /* Fondo difuminado suave */
+  body {
+    background: linear-gradient(135deg, #e0ecff, #f2f7ff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+  }
 
-<!-- HEADER FIJO -->
-<div class="login-header text-center text-white w-100">
-  <h1 class="mb-0 display-4"><%= appName %></h1>
+  /* Header azul con sombra */
+  .login-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #4e73df;
+    color: white;
+    padding: 1.25rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    text-align: center;
+  }
+
+  .login-header h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    color: #fff;
+    user-select: none;
+  }
+
+  /* Centrado vertical real entre header y footer */
+  main.login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin-top: 96px; /* espacio para el header fijo */
+    margin-bottom: 96px; /* espacio para el footer */
+  }
+
+  .card {
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    padding: 2rem 2.5rem;
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    color: #224abe;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    user-select: none;
+  }
+
+  input[type="number"] {
+    border-radius: 0.5rem;
+    border: 1.5px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  input[type="number"]:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 8px #4e73df66;
+    outline: none;
+  }
+
+  .form-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+
+  button[type="submit"] {
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #2e59d9;
+  }
+
+  /* Footer blanco fijo con sombra */
+  .footer-custom {
+    background-color: #ffffff;
+    color: #333;
+    border-top: 1px solid #e5e5e5;
+    box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.08);
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .footer-custom .social-link {
+    color: #666;
+    font-size: 1.5rem;
+    margin: 0 0.75rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .footer-custom .social-link:hover {
+    color: #4e73df;
+    transform: scale(1.2);
+  }
+</style>
+
+<!-- Header -->
+<div class="login-header">
+  <h1><%= appName %></h1>
 </div>
 
-<!-- Espacio de separación para que el form no quede bajo el header -->
-<div style="height: 100px;"></div>
-
-<div class="row justify-content-center">
-  <div class="col-md-6 col-lg-4">
-    <div class="card p-4 shadow-sm">
-      <h3 class="mb-4 text-center">Iniciar Sesión</h3>
-      <!-- Ahora el action es /login -->
-      <form method="get" action="/login">
-        <div class="mb-3">
-          <label class="form-label">Usuario ID</label>
-          <input 
-            type="number"
-            name="userId"
-            class="form-control"
-            placeholder="1, 2 o 3"
-            required>
-        </div>
-        <button class="btn btn-primary w-100">Entrar</button>
-      </form>
-    </div>
+<!-- Main Login Form -->
+<main class="login-main" role="main" aria-labelledby="login-title">
+  <div class="card" tabindex="0" aria-label="Formulario de inicio de sesión">
+    <h3 id="login-title">Iniciar Sesión</h3>
+    <form method="get" action="/login" novalidate>
+      <div class="mb-4">
+        <label for="userId" class="form-label fw-semibold">Usuario ID</label>
+        <input
+          id="userId"
+          type="number"
+          name="userId"
+          class="form-control"
+          placeholder="Ejemplo: 1, 2 o 3"
+          min="1"
+          required
+          autofocus
+          aria-describedby="userIdHelp"
+        />
+        <div id="userIdHelp" class="form-text">Ingresa tu ID de usuario para iniciar sesión</div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100" aria-label="Entrar al sistema">Entrar</button>
+    </form>
   </div>
-</div>
+</main>
+
+

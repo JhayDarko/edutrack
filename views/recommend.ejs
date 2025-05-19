@@ -1,15 +1,29 @@
-<% title='Recomendados' %>
-<h2>Cursos Recomendados</h2>
-<div class="row g-4">
-  <% cursos.forEach(c=>{ %>
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5><%= c.titulo %></h5>
-          <p><%= c.descripcion %></p>
-          <a href="/curso/<%= c.id %>?userId=<%= user.id %>" class="btn btn-primary">Ver</a>
+<% title = 'Recomendados' %>
+
+<h2 class="mb-4 text-success fw-bold">
+  <i class="fa-solid fa-star me-2"></i>Cursos Recomendados
+</h2>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+  <% cursos.forEach(c => { %>
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-dark mb-3">
+            <i class="fa-solid fa-book-open me-2 text-warning"></i><%= c.titulo %>
+          </h5>
+          <p class="card-text text-muted flex-grow-1"><%= c.descripcion %></p>
+          <a href="/curso/<%= c.id %>?userId=<%= user.id %>" class="btn btn-success mt-auto w-100">
+            <i class="fa-solid fa-arrow-right me-1"></i> Ver Curso
+          </a>
         </div>
       </div>
     </div>
   <% }) %>
 </div>
+
+<% if (cursos.length === 0) { %>
+  <div class="alert alert-info mt-4 text-center" role="alert">
+    No hay cursos recomendados disponibles en este momento.
+  </div>
+<% } %>

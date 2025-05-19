@@ -1,0 +1,10 @@
+[
+  { "estudiante": "Juan Pérez", "curso": "Matemáticas Avanzadas",    "nota": 85 },
+  { "estudiante": "Ana López",   "curso": "Introducción a JavaScript", "nota": 72 },
+  { "estudiante": "Luis García",  "curso": "Física para Ingenieros",    "nota": 78 },
+  { "estudiante": "María Torres", "curso": "Cálculo Diferencial",      "nota": 90 },
+  { "estudiante": "Pedro Sánchez", "curso": "Geometría Analítica",     "nota": 65 },
+  { "estudiante": "Laura Martínez", "curso": "Estadística Descriptiva", "nota": 88 },
+  { "estudiante": "Carlos Fernández", "curso": "Probabilidad y Estadística", "nota": 70 },
+  { "estudiante": "Sofía Ramírez",   "curso": "Programación Avanzada",   "nota": 95 }
+]

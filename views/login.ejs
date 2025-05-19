@@ -1,0 +1,30 @@
+<% title = 'Login' %>
+
+<!-- HEADER FIJO -->
+<div class="login-header text-center text-white w-100">
+  <h1 class="mb-0 display-4"><%= appName %></h1>
+</div>
+
+<!-- Espacio de separación para que el form no quede bajo el header -->
+<div style="height: 100px;"></div>
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-4">
+    <div class="card p-4 shadow-sm">
+      <h3 class="mb-4 text-center">Iniciar Sesión</h3>
+      <!-- Ahora el action es /login -->
+      <form method="get" action="/login">
+        <div class="mb-3">
+          <label class="form-label">Usuario ID</label>
+          <input 
+            type="number"
+            name="userId"
+            class="form-control"
+            placeholder="1, 2 o 3"
+            required>
+        </div>
+        <button class="btn btn-primary w-100">Entrar</button>
+      </form>
+    </div>
+  </div>
+</div>

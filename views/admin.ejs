@@ -1,0 +1,42 @@
+<% title='Panel Admin' %>
+<h2>Gestión de Usuarios</h2>
+<table class="table">
+  <thead>
+    <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th></tr>
+  </thead>
+  <tbody>
+    <% usuarios.forEach(u=>{ %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.nombre %></td>
+        <td><%= u.email %></td>
+        <td><%= u.role %></td>
+        <td>
+          <button class="btn btn-sm btn-warning"><i class="fa-solid fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2 class="mt-5">Gestión de Cursos</h2>
+<a class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
+<table class="table">
+  <thead><tr><th>ID</th><th>Título</th><th>Profesor</th><th>Acciones</th></tr></thead>
+  <tbody>
+    <% cursos.forEach(c=>{ 
+         const prof = usuarios.find(u=>u.id===c.profesorId);
+    %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= c.titulo %></td>
+        <td><%= prof?.nombre || '—' %></td>
+        <td>
+          <button class="btn btn-sm btn-warning"><i class="fa-solid fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

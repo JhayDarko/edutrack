@@ -1,0 +1,152 @@
+<% title = 'Perfil' %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <!-- Card principal -->
+    <div class="card mb-4 shadow-sm">
+      <div class="row g-0">
+        <div class="col-md-4 d-flex align-items-center justify-content-center bg-light p-4">
+          <img src="/img/avatar-<%= user.role %>.png"
+               alt="Avatar"
+               class="rounded-circle img-fluid"
+               style="max-width:150px">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title mb-3"><%= user.nombre %></h3>
+            <p class="text-muted mb-2">
+              <i class="fa-solid fa-envelope me-2"></i><%= user.email %>
+            </p>
+            <p class="text-muted mb-4">
+              <i class="fa-solid fa-user-tag me-2"></i>
+              <%= user.role.charAt(0).toUpperCase() + user.role.slice(1) %>
+            </p>
+            <div class="d-flex">
+              <a href="/perfil/editar?userId=<%= user.id %>" class="btn btn-outline-primary me-2">
+                <i class="fa-solid fa-pen"></i> Editar Perfil
+              </a>
+              <a href="/cambiar-password?userId=<%= user.id %>" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-lock"></i> Cambiar Contraseña
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Estudiante -->
+    <% if (user.role === 'estudiante') { %>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <i class="fa-solid fa-chart-line me-2"></i> Mi Actividad
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-6 col-sm-4 mb-3">
+              <h5 class="mb-1"><%= user.cursosCompletados %></h5>
+              <small>Cursos Completados</small>
+            </div>
+            <div class="col-6 col-sm-4 mb-3">
+              <h5 class="mb-1"><%= user.cursosEnProgreso %></h5>
+              <small>En Progreso</small>
+            </div>
+            <div class="col-12 col-sm-4 mb-3">
+              <h5 class="mb-1"><%= user.testsRealizados %></h5>
+              <small>Tests Realizados</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <i class="fa-solid fa-book-open-reader me-2"></i> Últimos Cursos Vistos
+        </div>
+        <ul class="list-group list-group-flush">
+          <% if (user.ultimosCursos.length) { %>
+            <% user.ultimosCursos.forEach(c => { %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-circle-dot text-primary me-2"></i><%= c.titulo %></span>
+                <span class="badge bg-secondary rounded-pill"><%= c.progreso %>%</span>
+              </li>
+            <% }) %>
+          <% } else { %>
+            <li class="list-group-item text-center text-muted">No has visto cursos recientemente.</li>
+          <% } %>
+        </ul>
+      </div>
+    <% } %>
+
+    <!-- Sección Profesor --><% if (user.role === 'profesor') { %>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-success text-white">
+      <i class="fa-solid fa-chalkboard-teacher me-2"></i> Mis Cursos
+    </div>
+    <ul class="list-group list-group-flush">
+      <% if ((user.misCursos || []).length) { %>
+        <% (user.misCursos || []).forEach(c => { %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%= c.titulo %>
+            <a href="/curso/<%= c.id %>?userId=<%= user.id %>" class="btn btn-sm btn-outline-primary">
+              Ver Detalle
+            </a>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li class="list-group-item text-center text-muted">Aún no impartes cursos.</li>
+      <% } %>
+    </ul>
+  </div>
+
+  <!-- La sección de notas igual -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <i class="fa-solid fa-file-lines me-2"></i> Notas de Estudiantes
+    </div>
+    <table class="table mb-0">
+      <thead>
+        <tr><th>Estudiante</th><th>Curso</th><th>Nota</th></tr>
+      </thead>
+      <tbody>
+        <% if ((user.notas || []).length) { %>
+          <% (user.notas || []).forEach(n => { %>
+            <tr>
+              <td><%= n.estudiante %></td>
+              <td><%= n.curso %></td>
+              <td><%= n.nota %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr><td colspan="3" class="text-center text-muted">No hay notas registradas.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
+    <!-- Sección Administrador -->
+    <% if (user.role === 'administrador') { %>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+          <i class="fa-solid fa-server me-2"></i> Resumen General
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-6 mb-3">
+              <h5 class="mb-1"><%= user.totalUsuarios %></h5>
+              <small>Usuarios Registrados</small>
+            </div>
+            <div class="col-6 mb-3">
+              <h5 class="mb-1"><%= user.totalCursos %></h5>
+              <small>Cursos Disponibles</small>
+            </div>
+          </div>
+          <a href="/admin?userId=<%= user.id %>" class="btn btn-outline-light w-100">
+            <i class="fa-solid fa-cog me-2"></i> Ir al Panel Admin
+          </a>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</div>

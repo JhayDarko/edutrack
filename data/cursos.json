@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "Matemáticas Avanzadas",
+    "descripcion": "Álgebra y cálculo avanzado.",
+    "progreso": 80,
+    "profesorId": 2
+  },
+  {
+    "id": 2,
+    "titulo": "Introducción a JavaScript",
+    "descripcion": "Conceptos básicos de JS.",
+    "progreso": 40,
+    "profesorId": 2
+  },
+  {
+    "id": 3,
+    "titulo": "Física para Ingenieros",
+    "descripcion": "Estudio de la mecánica.",
+    "progreso": 60,
+    "profesorId": 2
+  },
+  {
+    "id": 4,
+    "titulo": "Cálculo Diferencial",
+    "descripcion": "Fundamentos del cálculo.",
+    "progreso": 70,
+    "profesorId": 2
+  },
+  {
+    "id": 5,
+    "titulo": "Geometría Analítica",
+    "descripcion": "Estudio de la geometría en el plano.",
+    "progreso": 50,
+    "profesorId": 2
+  },
+  {
+    "id": 6,
+    "titulo": "Estadística Descriptiva",
+    "descripcion": "Análisis de datos y gráficos.",
+    "progreso": 90,
+    "profesorId": 2
+  },
+  {
+    "id": 7,
+    "titulo": "Probabilidad y Estadística",
+    "descripcion": "Fundamentos de probabilidad.",
+    "progreso": 75,
+    "profesorId": 2
+  },
+  {
+    "id": 8,
+    "titulo": "Programación Avanzada",
+    "descripcion": "Conceptos avanzados de programación.",
+    "progreso": 85,
+    "profesorId": 2
+  }
+]

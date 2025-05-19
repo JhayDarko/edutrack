@@ -1,0 +1,15 @@
+<% title='Recomendados' %>
+<h2>Cursos Recomendados</h2>
+<div class="row g-4">
+  <% cursos.forEach(c=>{ %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5><%= c.titulo %></h5>
+          <p><%= c.descripcion %></p>
+          <a href="/curso/<%= c.id %>?userId=<%= user.id %>" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

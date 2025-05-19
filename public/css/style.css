@@ -1,0 +1,53 @@
+:root {
+  --brand-primary: #0056b3;
+  --brand-secondary: #f0f2f5;
+  --text-color: #333;
+  --card-radius: .5rem;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--brand-secondary);
+  color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--brand-primary)!important;
+}
+
+.card {
+  border: none;
+  border-radius: var(--card-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+h1,h2,h3,h4 {
+  font-weight: 600;
+}
+
+.container {
+  max-width: 960px;
+}
+
+table th {
+  background-color: var(--brand-primary);
+  color: #fff;
+}
+
+.login-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--brand-primary);
+  padding: 1.5rem 0;
+  z-index: 1030; /* por encima de otros elementos */
+}
+
+/* Asegúrate de que el body tenga un padding-top igual o superior a la altura del header */
+

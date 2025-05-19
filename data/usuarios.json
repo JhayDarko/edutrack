@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "email": "juan.perez@example.com",
+    "role": "estudiante"
+  },
+  {
+    "id": 2,
+    "nombre": "María Gómez",
+    "email": "maria.gomez@example.com",
+    "role": "profesor"
+  },
+  {
+    "id": 3,
+    "nombre": "Admin Usuario",
+    "email": "admin@edutrack.com",
+    "role": "administrador"
+  }
+]

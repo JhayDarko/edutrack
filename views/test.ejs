@@ -1,0 +1,17 @@
+<% title = 'Test Diagnóstico' %>
+
+<h2 class="mb-4">Test Diagnóstico</h2>
+<form action="/test/enviar" method="POST">
+  <% ['Álgebra', 'Cálculo', 'Física', 'Programación'].forEach(materia => { %>
+    <div class="mb-4">
+      <h4><%= materia %></h4>
+      <% for (let i = 1; i <= 3; i++) { %>
+        <div class="form-group mb-2">
+          <label>Pregunta <%= i %>:</label>
+          <input type="number" min="0" max="10" name="<%= materia %>[]" class="form-control" required>
+        </div>
+      <% } %>
+    </div>
+  <% }) %>
+  <button type="submit" class="btn btn-primary">Enviar Respuestas</button>
+</form>

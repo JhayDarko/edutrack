@@ -1,0 +1,17 @@
+<% title='Acceso Denegado' %>
+<div class="text-center mt-5">
+  <h2><i class="fa-solid fa-lock-open"></i> Acceso Denegado</h2>
+  <p>No tienes permisos para ver esta sección.</p>
+  <div class="mt-4">
+    <% if(user.role==='administrador'){ %>
+      <a href="/admin?userId=<%= user.id %>" class="btn btn-primary me-2">Panel Admin</a>
+    <% } %>
+    <% if(user.role==='profesor'){ %>
+      <a href="/profesores?userId=<%= user.id %>" class="btn btn-primary me-2">Mis Cursos</a>
+    <% } %>
+    <% if(user.role==='estudiante'){ %>
+      <a href="/dashboard?userId=<%= user.id %>" class="btn btn-primary me-2">Dashboard</a>
+      <a href="/recommend?userId=<%= user.id %>" class="btn btn-secondary">Recomendados</a>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<% title='Gestionar Cursos' %>
+<h2>Gestionar Cursos</h2>
+<a class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Nuevo Curso</a>
+<div class="row g-4">
+  <% cursos.forEach(c=>{ %>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5><%= c.titulo %></h5>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-warning me-2"><i class="fa-solid fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

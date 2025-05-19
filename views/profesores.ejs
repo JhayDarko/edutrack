@@ -1,0 +1,39 @@
+<% title='Mis Cursos' %>
+<h2>Mis Cursos</h2>
+<div class="row g-4">
+  <% cursos.forEach(c=>{ %>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5><%= c.titulo %></h5>
+        <a class="btn btn-outline-primary btn-sm mt-2"><i class="fa-solid fa-chart-bar"></i> Ver Rendimiento</a>
+      </div>
+    </div>
+  <% }) %>
+</div>
+<button class="btn btn-success mt-4"><i class="fa-solid fa-plus"></i> Crear Curso</button>
+<h2 class="mt-5">Notas de Estudiantes</h2>
+<table class="table">
+  <thead><tr><th>Estudiante</th><th>Curso</th><th>Nota</th></tr></thead>
+  <tbody>
+    <% notas.forEach(n=>{ %>
+      <tr>
+        <td><%= n.estudiante %></td>
+        <td><%= n.curso %></td>
+        <td><%= n.nota %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2 class="mt-5">Subir Nuevo Curso</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label class="form-label">Título</label>
+    <input name="titulo" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Descripción</label>
+    <textarea name="descripcion" class="form-control"></textarea>
+  </div>
+  <button class="btn btn-success">Subir Curso</button>
+</form>

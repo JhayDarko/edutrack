@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "area": "Álgebra",
+    "q": "¿2+2=?",
+    "opciones": [
+      { "4": 1 },
+      { "3": 0 },
+      { "5": 0 }
+    ]
+  },
+  {
+    "id": 2,
+    "area": "Geometría",
+    "q": "Triángulo=?",
+    "opciones": [
+      { "3 lados": 1 },
+      { "4 lados": 0 }
+    ]
+  },
+  {
+    "id": 3,
+    "area": "Cálculo",
+    "q": "Derivada de x^2?",
+    "opciones": [
+      { "2x": 1 },
+      { "x": 0 }
+    ]
+  }
+]

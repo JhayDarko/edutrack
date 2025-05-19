@@ -1,0 +1,58 @@
+<% title = 'Estadísticas por Período' %>
+
+<h2 class="mb-4 text-center">Estadísticas por Período</h2>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <canvas id="radarStats"></canvas>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Recibimos objeto { periods: [...], data: { period: [{area,score},...] } }
+  const stats = <%- JSON.stringify(stats) %>;
+  const periods = stats.periods;
+  // Asumimos que el array de áreas es el mismo en cada período
+  const labels = stats.data[periods[0]].map(item => item.area);
+
+  // Construimos un dataset por período
+  const datasets = periods.map((period, idx) => {
+    return {
+      label: period,
+      data: stats.data[period].map(item => item.score),
+      fill: true,
+      tension: 0.1,
+      // Opciones de color semitransparente
+      backgroundColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 0.2)`,
+      borderColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 1)`,
+      pointBackgroundColor: `rgba(${50 + idx*50}, ${123 + idx*30}, ${200 - idx*40}, 1)`
+    };
+  });
+
+  new Chart(
+    document.getElementById('radarStats').getContext('2d'),
+    {
+      type: 'radar',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            beginAtZero: true,
+            suggestedMin: 0,
+            suggestedMax: 100,
+            ticks: { stepSize: 20 }
+          }
+        },
+        plugins: {
+          legend: { position: 'top' },
+          title: {
+            display: true,
+            text: 'Comparativa de Rendimiento por Período'
+          }
+        }
+      }
+    }
+  );
+});
+</script>

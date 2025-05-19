@@ -1,0 +1,10 @@
+<% title='Historial Tests' %>
+<h2>Historial de Tests</h2>
+<table class="table">
+  <thead><tr><th>Test</th><th>Fecha</th><th>Nota</th></tr></thead>
+  <tbody>
+    <% history.forEach(h=>{ %>
+      <tr><td><%= h.test %></td><td><%= h.fecha %></td><td><%= h.nota %></td></tr>
+    <% }) %>
+  </tbody>
+</table>

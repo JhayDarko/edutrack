@@ -1,0 +1,13 @@
+<% title='Resultados Diagnóstico' %>
+<h2>Resultados Diagnóstico</h2>
+<canvas id="chartDiag"></canvas>
+<script>
+  const ctx = document.getElementById('chartDiag').getContext('2d');
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: <%- JSON.stringify(Object.keys(resultados)) %>,
+      datasets: [{ data: <%- JSON.stringify(Object.values(resultados)) %> }]
+    }
+  });
+</script>

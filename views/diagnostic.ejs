@@ -1,0 +1,18 @@
+<% title='Test Diagnóstico' %>
+<h2>Test Diagnóstico</h2>
+<form method="POST">
+  <% preguntas.forEach(p=>{ %>
+    <div class="mb-4">
+      <label class="form-label"><%= p.q %></label>
+      <% p.opciones.forEach(opt=>{ 
+           const texto = Object.keys(opt)[0];
+      %>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="p<%= p.id %>" value="<%= texto %>" required>
+          <label class="form-check-label"><%= texto %></label>
+        </div>
+      <% }) %>
+    </div>
+  <% }) %>
+  <button class="btn btn-primary">Enviar</button>
+</form>

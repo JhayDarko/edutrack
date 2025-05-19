@@ -1,0 +1,130 @@
+{
+    "periods": [
+        "2025‑Q1",
+        "2025‑Q2",
+        "2025‑Q3",
+        "2025‑Q4"
+    ],
+    "data": {
+        "2025‑Q1": [
+            {
+                "area": "Álgebra",
+                "score": 75
+            },
+            {
+                "area": "Física",
+                "score": 80
+            },
+            {
+                "area": "Cálculo",
+                "score": 60
+            },
+            {
+                "area": "Programación",
+                "score": 50
+            },
+            {
+                "area": "Geometría",
+                "score": 70
+            },
+            {
+                "area": "Estadística",
+                "score": 65
+            },
+            {
+                "area": "Probabilidad",
+                "score": 55
+            }
+        ],
+        "2025‑Q2": [
+            {
+                "area": "Álgebra",
+                "score": 85
+            },
+            {
+                "area": "Física",
+                "score": 78
+            },
+            {
+                "area": "Cálculo",
+                "score": 65
+            },
+            {
+                "area": "Programación",
+                "score": 55
+            },
+            {
+                "area": "Geometría",
+                "score": 75
+            },
+            {
+                "area": "Estadística",
+                "score": 70
+            },
+            {
+                "area": "Probabilidad",
+                "score": 60
+            }
+        ],
+        "2025‑Q3": [
+            {
+                "area": "Álgebra",
+                "score": 90
+            },
+            {
+                "area": "Física",
+                "score": 85
+            },
+            {
+                "area": "Cálculo",
+                "score": 70
+            },
+            {
+                "area": "Programación",
+                "score": 60
+            },
+            {
+                "area": "Geometría",
+                "score": 80
+            },
+            {
+                "area": "Estadística",
+                "score": 75
+            },
+            {
+                "area": "Probabilidad",
+                "score": 65
+            }
+        ],
+        "2025‑Q4": [
+            {
+                "area": "Álgebra",
+                "score": 95
+            },
+            {
+                "area": "Física",
+                "score": 90
+            },
+            {
+                "area": "Cálculo",
+                "score": 75
+            },
+            {
+                "area": "Programación",
+                "score": 65
+            },
+            {
+                "area": "Geometría",
+                "score": 85
+            },
+            {
+                "area": "Estadística",
+                "score": 80
+            },
+            {
+                "area": "Probabilidad",
+                "score": 70
+            }
+        ]
+    }
+}

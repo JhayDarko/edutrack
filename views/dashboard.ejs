@@ -1,0 +1,17 @@
+<% title='Dashboard' %>
+<h2>Mis Cursos</h2>
+<div class="row g-4">
+  <% cursos.forEach(c=>{ %>
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100">
+        <div class="card-body d-flex flex-column">
+          <h5><i class="fa-solid fa-book"></i> <%= c.titulo %></h5>
+          <p class="flex-grow-1"><%= c.descripcion %></p>
+          <p>Progreso: <strong><%= c.progreso %>%</strong></p>
+          <a href="/curso/<%= c.id %>?userId=<%= user.id %>" class="btn btn-outline-primary mt-auto">Ver</a>
+          
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
